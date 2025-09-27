@@ -18,7 +18,9 @@ builder.Services.AddAutoMapper(typeof(MappingProfile));
 
 // Repository & Business katmanları
 builder.Services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
+builder.Services.AddScoped<ISiteRepository, SiteRepository>();
 builder.Services.AddScoped<IProductManager, ProductManager>();
+builder.Services.AddScoped<ISiteManager, SiteManager>();
 
 var app = builder.Build();
 

@@ -24,6 +24,7 @@
                     <th>Kısa Açıklama</th>
                     <th>Stok</th>
                     <th>Durum</th>
+                    <th>Detay</th>
                     <th>Düzenle</th>
                     <th>Sil</th>
                 </tr>
@@ -40,22 +41,23 @@
                             <td>@item.StockQuantity</td>
                             <td>@(item.IsActive ? "Aktif" : "Pasif")</td>
                             <td>
+                                <a asp-action="Detail" asp-route-id="@item.Id" class="btn btn-sm btn-outline-primary">Detay</a>
+                            </td>
+                            <td>
                                 <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-sm btn-outline-secondary">Düzenle</a>
                             </td>
-    
                             <td>
                                 <form asp-action="Delete" asp-route-id="@item.Id" method="post" style="display:inline;" onsubmit="return confirm('Bu ürünü silmek istediğinize emin misiniz?');">
                                     <button type="submit" class="btn btn-sm btn-outline-danger">Sil</button>
                                 </form>
                             </td>
-
                         </tr>
                     }
                 }
                 else
                 {
                     <tr>
-                        <td colspan="7" class="text-center">Henüz ürün yok</td>
+                        <td colspan="8" class="text-center">Henüz ürün yok</td>
                     </tr>
                 }
             </tbody>

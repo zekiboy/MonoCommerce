@@ -17,3 +17,4 @@
 /Users/zekiboy/Desktop/MyGithub/MonoCommerce/MonoCommerce.Business/obj/Debug/net9.0/MonoCommerce.Business.pdb
 /Users/zekiboy/Desktop/MyGithub/MonoCommerce/MonoCommerce.Business/obj/Debug/net9.0/MonoCommerce.Business.genruntimeconfig.cache
 /Users/zekiboy/Desktop/MyGithub/MonoCommerce/MonoCommerce.Business/obj/Debug/net9.0/ref/MonoCommerce.Business.dll
+/Users/zekiboy/Desktop/MyGithub/MonoCommerce/MonoCommerce.Business/obj/Debug/net9.0/MonoCommerce.Business.sourcelink.json

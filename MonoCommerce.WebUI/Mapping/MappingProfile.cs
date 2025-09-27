@@ -6,6 +6,8 @@ public class MappingProfile : Profile
 {
     public MappingProfile()
     {
+        CreateMap<SiteViewModel, Site>().ReverseMap();
+
         CreateMap<Product, ProductViewModel>().ReverseMap();
     }
 }

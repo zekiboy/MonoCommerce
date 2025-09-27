@@ -15,3 +15,4 @@
 /Users/zekiboy/Desktop/MyGithub/MonoCommerce/MonoCommerce.Data/obj/Debug/net9.0/MonoCommerce.Data.pdb
 /Users/zekiboy/Desktop/MyGithub/MonoCommerce/MonoCommerce.Data/obj/Debug/net9.0/MonoCommerce.Data.genruntimeconfig.cache
 /Users/zekiboy/Desktop/MyGithub/MonoCommerce/MonoCommerce.Data/obj/Debug/net9.0/ref/MonoCommerce.Data.dll
+/Users/zekiboy/Desktop/MyGithub/MonoCommerce/MonoCommerce.Data/obj/Debug/net9.0/MonoCommerce.Data.sourcelink.json

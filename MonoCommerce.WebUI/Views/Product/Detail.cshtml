@@ -1,0 +1,76 @@
+@model MonoCommerce.WebUI.Models.ProductViewModel
+
+@{
+    ViewData["Title"] = "Ürün Detayı";
+}
+
+<div class="container mt-4">
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <h2>Ürün Detayı</h2>
+        <a asp-action="Index" class="btn btn-outline-secondary">Geri</a>
+    </div>
+
+    <div class="card mb-4 shadow-sm">
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-4">
+                    @if (!string.IsNullOrEmpty(Model.ImagePath))
+                    {
+                        <img src="@Model.ImagePath" class="img-fluid rounded" alt="@Model.Name" />
+                    }
+                    else
+                    {
+                        <img src="~/images/placeholder.png" class="img-fluid rounded" alt="Resim yok" />
+                    }
+                </div>
+
+                <div class="col-md-8">
+                    <dl class="row">
+                        <dt class="col-sm-4">Ürün Adı</dt>
+                        <dd class="col-sm-8">@Model.Name</dd>
+
+                        <dt class="col-sm-4">Kısa Açıklama</dt>
+                        <dd class="col-sm-8">@Model.ShortDescription</dd>
+
+                        <dt class="col-sm-4">Durum</dt>
+                        <dd class="col-sm-8">@(Model.IsActive ? "Aktif" : "Pasif")</dd>
+
+                        <dt class="col-sm-4">Stok Miktarı</dt>
+                        <dd class="col-sm-8">@Model.StockQuantity</dd>
+
+                        <dt class="col-sm-4">Fiyat</dt>
+                        <dd class="col-sm-8">@Model.Price?.ToString("C")</dd>
+
+                        <dt class="col-sm-4">Satış Fiyatı</dt>
+                        <dd class="col-sm-8">@Model.SalePrice?.ToString("C")</dd>
+
+                        <dt class="col-sm-4">İndirim Oranı (%)</dt>
+                        <dd class="col-sm-8">@Model.DiscountRate</dd>
+
+                        <dt class="col-sm-4">Kargo Firması</dt>
+                        <dd class="col-sm-8">@Model.CargoCompanyId</dd>
+
+                        <dt class="col-sm-4">Youtube Linki</dt>
+                        <dd class="col-sm-8">
+                            @if (!string.IsNullOrEmpty(Model.YoutubeLink))
+                            {
+                                <a href="@Model.YoutubeLink" target="_blank">@Model.YoutubeLink</a>
+                            }
+                        </dd>
+
+                        <dt class="col-sm-4">HTML İçerik</dt>
+                        <dd class="col-sm-8">@Html.Raw(Model.HtmlContent)</dd>
+                    </dl>
+
+                    <div class="mt-4">
+                        <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-outline-secondary me-2">Düzenle</a>
+
+                        <form asp-action="Delete" asp-route-id="@Model.Id" method="post" class="d-inline" onsubmit="return confirm('Bu ürünü silmek istediğinize emin misiniz?');">
+                            <button type="submit" class="btn btn-outline-danger">Sil</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,84 @@
+@model MonoCommerce.WebUI.Models.SiteViewModel
+
+@{
+    ViewData["Title"] = "Site Detayı";
+}
+
+<div class="container mt-4">
+    <h2>Site Detayı</h2>
+    <p class="text-muted">Site bilgilerini aşağıdan görebilirsiniz.</p>
+
+    <div class="card mb-3">
+        <div class="card-header">
+            @Model.Name (@Model.Url)
+        </div>
+        <div class="card-body">
+            <dl class="row">
+
+                <dt class="col-sm-3">ID</dt>
+                <dd class="col-sm-9">@Model.Id</dd>
+
+                <dt class="col-sm-3">Site Adı</dt>
+                <dd class="col-sm-9">@Model.Name</dd>
+
+                <dt class="col-sm-3">Site URL</dt>
+                <dd class="col-sm-9">@Model.Url</dd>
+
+                <dt class="col-sm-3">Açıklama</dt>
+                <dd class="col-sm-9">@Model.Description</dd>
+
+                <dt class="col-sm-3">Ürün</dt>
+                <dd class="col-sm-9">@Model.ProductName</dd>
+
+                <dt class="col-sm-3">Durum</dt>
+                <dd class="col-sm-9">@((Model.IsActive) ? "Aktif" : "Pasif")</dd>
+
+                <dt class="col-sm-3">Resim URL</dt>
+                <dd class="col-sm-9">
+                    @if(!string.IsNullOrEmpty(Model.ImageUrl))
+                    {
+                        <img src="@Model.ImageUrl" alt="@Model.Name" class="img-fluid" style="max-height:200px;" />
+                    }
+                    else
+                    {
+                        <span>Resim yok</span>
+                    }
+                </dd>
+
+                <dt class="col-sm-3">Fiyatlar</dt>
+                <dd class="col-sm-9">@Model.Prices ?? "-"</dd>
+
+                <dt class="col-sm-3">Ödeme Yöntemi</dt>
+                <dd class="col-sm-9">@Model.PaymentMethod (@Model.Currency)</dd>
+
+                <dt class="col-sm-3">Whatsapp Aktif</dt>
+                <dd class="col-sm-9">@((Model.WhatsappEnabled) ? "Evet" : "Hayır")</dd>
+
+                <dt class="col-sm-3">Whatsapp Telefon</dt>
+                <dd class="col-sm-9">@Model.WhatsappPhone ?? "-"</dd>
+
+                <dt class="col-sm-3">HTML İçerik</dt>
+                <dd class="col-sm-9">@Html.Raw(Model.HtmlContent ?? "-")</dd>
+
+                <dt class="col-sm-3">Form HTML</dt>
+                <dd class="col-sm-9">@Html.Raw(Model.FormHtml ?? "-")</dd>
+
+                <dt class="col-sm-3">Pixel Kodları</dt>
+                <dd class="col-sm-9">
+                    <p>Pixel: @Model.PixelCode ?? "-"</p>
+                    <p>Özel Pixel: @Model.PixelSpecialCode ?? "-"</p>
+                    <p>Pixel ID'leri: @Model.PixelIds ?? "-"</p>
+                    <p>Counter: @Model.CounterCode ?? "-"</p>
+                </dd>
+            </dl>
+        </div>
+    </div>
+
+    <div class="d-flex gap-2">
+        <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-outline-secondary">Düzenle</a>
+
+        <form asp-action="Delete" asp-route-id="@Model.Id" method="post" onsubmit="return confirm('Bu siteyi silmek istediğinize emin misiniz?');">
+            <button type="submit" class="btn btn-outline-danger">Sil</button>
+        </form>
+    </div>
+</div>

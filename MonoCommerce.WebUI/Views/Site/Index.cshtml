@@ -1,0 +1,102 @@
+@model IEnumerable<MonoCommerce.WebUI.Models.SiteViewModel>
+
+@{
+    ViewData["Title"] = "Site Yönetimi";
+}
+
+<div class="container mt-4">
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <div>
+            <h2>Site Yönetimi</h2>
+            <p class="text-muted">Web Sitelerinizin Yönetimini Bu Ekrandan Gerçekleştirebilirsiniz.</p>
+        </div>
+        <div>
+            <a asp-action="Create" class="btn btn-outline-secondary">Site Ekle</a>
+        </div>
+    </div>
+
+    <div class="mb-3 d-flex justify-content-between">
+        <div>
+            Show 
+            <select class="form-select d-inline-block w-auto">
+                <option>10</option>
+                <option>25</option>
+                <option>50</option>
+                <option>100</option>
+            </select> 
+            entries
+        </div>
+        <div>
+            <input type="text" class="form-control" placeholder="Search">
+        </div>
+    </div>
+
+    <div class="table-responsive">
+        <table class="table table-bordered table-striped" id="sitesTable">
+            <thead class="table-light">
+                <tr>
+                    <th>ID</th>
+                    <th>Site URL</th>
+                    <th>Açıklama</th>
+                    <th>Ürün</th>
+                    <th>Durum</th>
+                    <th>Kopyala</th>
+                    <th>Ek Ürünler</th>
+                    <th>Promosyon</th>
+                    <th>Düzenle</th>
+                    <th>Sil</th>
+                    <th>Detaylar</th>
+                </tr>
+            </thead>
+            <tbody>
+                @if(Model != null && Model.Any())
+                {
+                    foreach(var site in Model)
+                    {
+                        <tr>
+                            <td>@site.Id</td>
+                            <td>@site.Url</td>
+                            <td>@site.Description</td>
+                            <td>@site.ProductName</td>
+                            <td>@(site.IsActive ? "Aktif" : "Pasif")</td>
+                            <td>
+                                <button class="btn btn-sm btn-outline-secondary">Kopyala</button>
+                            </td>
+                            <td>
+                                <a asp-action="ExtraProducts" asp-route-id="@site.Id" class="btn btn-sm btn-outline-secondary">Seç</a>
+                            </td>
+                            <td>
+                                <a asp-action="Promotions" asp-route-id="@site.Id" class="btn btn-sm btn-outline-secondary">Seç</a>
+                            </td>
+                            <td>
+                                <a asp-action="Edit" asp-route-id="@site.Id" class="btn btn-sm btn-outline-secondary">Düzenle</a>
+                            </td>
+                            <td>
+                                <form asp-action="Delete" asp-route-id="@site.Id" method="post" style="display:inline;" onsubmit="return confirm('Bu siteyi silmek istediğinize emin misiniz?');">
+                                    <button type="submit" class="btn btn-sm btn-outline-danger">Sil</button>
+                                </form>
+                            </td>
+                            <td>
+                                <a asp-action="Details" asp-route-id="@site.Id" class="btn btn-sm btn-outline-primary">Detaylar</a>
+                            </td>
+                        </tr>
+                    }
+                }
+                else
+                {
+                    <tr>
+                        <td colspan="11" class="text-center">Henüz site yok</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            $('#sitesTable').DataTable();
+        });
+    </script>
+}
