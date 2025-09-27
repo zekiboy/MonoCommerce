@@ -1,0 +1,132 @@
+@model MonoCommerce.WebUI.Models.SiteViewModel
+
+@{
+    ViewData["Title"] = "Site Düzenle";
+}
+
+<div class="container mt-4">
+    <h2>Site Düzenle</h2>
+    <p class="text-muted">Bu ekrandan mevcut siteyi düzenleyebilirsiniz.</p>
+
+    <form asp-action="Edit" method="post">
+        <input type="hidden" asp-for="Id" />
+
+        <div class="mb-3">
+            <label asp-for="Name" class="form-label"></label>
+            <input asp-for="Name" class="form-control" />
+            <span asp-validation-for="Name" class="text-danger"></span>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="Url" class="form-label"></label>
+            <input asp-for="Url" class="form-control" />
+            <span asp-validation-for="Url" class="text-danger"></span>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="Description" class="form-label"></label>
+            <textarea asp-for="Description" class="form-control"></textarea>
+            <span asp-validation-for="Description" class="text-danger"></span>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="ProductId" class="form-label">Ürün</label>
+            <select asp-for="ProductId" class="form-select" asp-items="ViewBag.Products">
+                <option value="">Seçiniz</option>
+            </select>
+            <span asp-validation-for="ProductId" class="text-danger"></span>
+        </div>
+
+        <div class="mb-3 form-check">
+            <input asp-for="IsActive" class="form-check-input" />
+            <label asp-for="IsActive" class="form-check-label"></label>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="ImageUrl" class="form-label"></label>
+            <input asp-for="ImageUrl" class="form-control" />
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="Prices" class="form-label"></label>
+            <input asp-for="Prices" class="form-control" />
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="PaymentMethod" class="form-label"></label>
+            <input asp-for="PaymentMethod" class="form-control" />
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="Currency" class="form-label"></label>
+            <input asp-for="Currency" class="form-control" />
+        </div>
+
+        <div class="mb-3 form-check">
+            <input asp-for="WhatsappEnabled" class="form-check-input" />
+            <label asp-for="WhatsappEnabled" class="form-check-label"></label>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="WhatsappPhone" class="form-label"></label>
+            <input asp-for="WhatsappPhone" class="form-control" />
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="WhatsappAvailableTime" class="form-label"></label>
+            <input asp-for="WhatsappAvailableTime" class="form-control" />
+        </div>
+
+        <div class="mb-3 form-check">
+            <input asp-for="SmsApproval" class="form-check-input" />
+            <label asp-for="SmsApproval" class="form-check-label"></label>
+        </div>
+
+        <div class="mb-3 form-check">
+            <input asp-for="FtpCreated" class="form-check-input" />
+            <label asp-for="FtpCreated" class="form-check-label"></label>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="Theme" class="form-label"></label>
+            <input asp-for="Theme" class="form-control" />
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="PixelCode" class="form-label"></label>
+            <textarea asp-for="PixelCode" class="form-control"></textarea>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="PixelSpecialCode" class="form-label"></label>
+            <textarea asp-for="PixelSpecialCode" class="form-control"></textarea>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="PixelIds" class="form-label"></label>
+            <input asp-for="PixelIds" class="form-control" />
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="CounterCode" class="form-label"></label>
+            <textarea asp-for="CounterCode" class="form-control"></textarea>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="HtmlContent" class="form-label"></label>
+            <textarea asp-for="HtmlContent" class="form-control" rows="4"></textarea>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="FormHtml" class="form-label"></label>
+            <textarea asp-for="FormHtml" class="form-control" rows="4"></textarea>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Kaydet</button>
+        <a asp-action="Index" class="btn btn-secondary">İptal</a>
+    </form>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

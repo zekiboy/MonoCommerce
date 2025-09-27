@@ -227,3 +227,4 @@
 /Users/zekiboy/Desktop/MyGithub/MonoCommerce/MonoCommerce.WebUI/obj/Debug/net9.0/ref/MonoCommerce.WebUI.dll
 /Users/zekiboy/Desktop/MyGithub/MonoCommerce/MonoCommerce.WebUI/bin/Debug/net9.0/AutoMapper.dll
 /Users/zekiboy/Desktop/MyGithub/MonoCommerce/MonoCommerce.WebUI/bin/Debug/net9.0/AutoMapper.Extensions.Microsoft.DependencyInjection.dll
+/Users/zekiboy/Desktop/MyGithub/MonoCommerce/MonoCommerce.WebUI/obj/Debug/net9.0/MonoCommerce.WebUI.sourcelink.json

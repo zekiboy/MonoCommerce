@@ -122,21 +122,16 @@ namespace MonoCommerce.WebUI.Controllers
             }
         }
 
-        // GET: Ürün Detay
+        // GET: Product/Detail/5
         [HttpGet]
-        public async Task<IActionResult> Details(int id)
+        public async Task<IActionResult> Detail(int id)
         {
-            try
-            {
-                var product = await _productManager.GetByIdAsync(id);
-                if (product == null) return NotFound();
-                return View(product);
-            }
-            catch (Exception ex)
-            {
-                _logger.LogError(ex, "Ürün detay görüntülenirken hata oluştu. Id: {ProductId}", id);
-                return View("Error");
-            }
+            var product = await _productManager.GetByIdAsync(id);
+            if (product == null) return NotFound();
+
+            // Entity -> ViewModel
+            var model = _mapper.Map<ProductViewModel>(product);
+            return View(model);
         }
 
         // [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

@@ -9,3 +9,4 @@
 /Users/zekiboy/Desktop/MyGithub/MonoCommerce/MonoCommerce.Entities/obj/Debug/net9.0/refint/MonoCommerce.Entities.dll
 /Users/zekiboy/Desktop/MyGithub/MonoCommerce/MonoCommerce.Entities/obj/Debug/net9.0/MonoCommerce.Entities.pdb
 /Users/zekiboy/Desktop/MyGithub/MonoCommerce/MonoCommerce.Entities/obj/Debug/net9.0/ref/MonoCommerce.Entities.dll
+/Users/zekiboy/Desktop/MyGithub/MonoCommerce/MonoCommerce.Entities/obj/Debug/net9.0/MonoCommerce.Entities.sourcelink.json
