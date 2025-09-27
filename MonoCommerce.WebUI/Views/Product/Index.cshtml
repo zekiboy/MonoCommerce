@@ -1,0 +1,72 @@
+@model IEnumerable<MonoCommerce.WebUI.Models.ProductViewModel>
+
+@{
+    ViewData["Title"] = "Ürün Yönetimi";
+}
+
+<div class="container mt-4">
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <div>
+            <h2>Ürün Yönetimi</h2>
+            <p class="text-muted">Ürünlerinizin Yönetimini Bu Ekrandan Gerçekleştirebilirsiniz.</p>
+        </div>
+        <div>
+            <a asp-controller="Product" asp-action="Create" class="btn btn-outline-secondary">Ürün Ekle</a>
+        </div>
+    </div>
+
+    <div class="table-responsive">
+        <table class="table table-bordered table-striped" id="productsTable">
+            <thead class="table-light">
+                <tr>
+                    <th>ID</th>
+                    <th>Ürün Adı</th>
+                    <th>Kısa Açıklama</th>
+                    <th>Stok</th>
+                    <th>Durum</th>
+                    <th>Düzenle</th>
+                    <th>Sil</th>
+                </tr>
+            </thead>
+            <tbody>
+                @if(Model != null && Model.Any())
+                {
+                    foreach(var item in Model)
+                    {
+                        <tr>
+                            <td>@item.Id</td>
+                            <td>@item.Name</td>
+                            <td>@item.ShortDescription</td>
+                            <td>@item.StockQuantity</td>
+                            <td>@(item.IsActive ? "Aktif" : "Pasif")</td>
+                            <td>
+                                <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-sm btn-outline-secondary">Düzenle</a>
+                            </td>
+    
+                            <td>
+                                <form asp-action="Delete" asp-route-id="@item.Id" method="post" style="display:inline;" onsubmit="return confirm('Bu ürünü silmek istediğinize emin misiniz?');">
+                                    <button type="submit" class="btn btn-sm btn-outline-danger">Sil</button>
+                                </form>
+                            </td>
+
+                        </tr>
+                    }
+                }
+                else
+                {
+                    <tr>
+                        <td colspan="7" class="text-center">Henüz ürün yok</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            $('#productsTable').DataTable();
+        });
+    </script>
+}

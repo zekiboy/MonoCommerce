@@ -1,0 +1,40 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MonoCommerce.Entities", "MonoCommerce.Entities\MonoCommerce.Entities.csproj", "{D2A90FF7-EB68-4855-A7C9-AE9BDF9CF8BD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MonoCommerce.Data", "MonoCommerce.Data\MonoCommerce.Data.csproj", "{074416D6-8446-4327-A953-A04A1C8129C9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MonoCommerce.Business", "MonoCommerce.Business\MonoCommerce.Business.csproj", "{021CA39E-D8A1-4D12-95B4-166CC2ACECC9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MonoCommerce.WebUI", "MonoCommerce.WebUI\MonoCommerce.WebUI.csproj", "{187938BB-20AF-42B3-8A1D-1716046818AB}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D2A90FF7-EB68-4855-A7C9-AE9BDF9CF8BD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D2A90FF7-EB68-4855-A7C9-AE9BDF9CF8BD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D2A90FF7-EB68-4855-A7C9-AE9BDF9CF8BD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D2A90FF7-EB68-4855-A7C9-AE9BDF9CF8BD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{074416D6-8446-4327-A953-A04A1C8129C9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{074416D6-8446-4327-A953-A04A1C8129C9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{074416D6-8446-4327-A953-A04A1C8129C9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{074416D6-8446-4327-A953-A04A1C8129C9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{021CA39E-D8A1-4D12-95B4-166CC2ACECC9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{021CA39E-D8A1-4D12-95B4-166CC2ACECC9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{021CA39E-D8A1-4D12-95B4-166CC2ACECC9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{021CA39E-D8A1-4D12-95B4-166CC2ACECC9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{187938BB-20AF-42B3-8A1D-1716046818AB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{187938BB-20AF-42B3-8A1D-1716046818AB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{187938BB-20AF-42B3-8A1D-1716046818AB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{187938BB-20AF-42B3-8A1D-1716046818AB}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal

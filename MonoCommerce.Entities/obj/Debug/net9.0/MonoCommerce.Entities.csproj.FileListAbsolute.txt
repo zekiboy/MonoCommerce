@@ -1,0 +1,11 @@
+/Users/zekiboy/Desktop/MyGithub/MonoCommerce/MonoCommerce.Entities/bin/Debug/net9.0/MonoCommerce.Entities.deps.json
+/Users/zekiboy/Desktop/MyGithub/MonoCommerce/MonoCommerce.Entities/bin/Debug/net9.0/MonoCommerce.Entities.dll
+/Users/zekiboy/Desktop/MyGithub/MonoCommerce/MonoCommerce.Entities/bin/Debug/net9.0/MonoCommerce.Entities.pdb
+/Users/zekiboy/Desktop/MyGithub/MonoCommerce/MonoCommerce.Entities/obj/Debug/net9.0/MonoCommerce.Entities.GeneratedMSBuildEditorConfig.editorconfig
+/Users/zekiboy/Desktop/MyGithub/MonoCommerce/MonoCommerce.Entities/obj/Debug/net9.0/MonoCommerce.Entities.AssemblyInfoInputs.cache
+/Users/zekiboy/Desktop/MyGithub/MonoCommerce/MonoCommerce.Entities/obj/Debug/net9.0/MonoCommerce.Entities.AssemblyInfo.cs
+/Users/zekiboy/Desktop/MyGithub/MonoCommerce/MonoCommerce.Entities/obj/Debug/net9.0/MonoCommerce.Entities.csproj.CoreCompileInputs.cache
+/Users/zekiboy/Desktop/MyGithub/MonoCommerce/MonoCommerce.Entities/obj/Debug/net9.0/MonoCommerce.Entities.dll
+/Users/zekiboy/Desktop/MyGithub/MonoCommerce/MonoCommerce.Entities/obj/Debug/net9.0/refint/MonoCommerce.Entities.dll
+/Users/zekiboy/Desktop/MyGithub/MonoCommerce/MonoCommerce.Entities/obj/Debug/net9.0/MonoCommerce.Entities.pdb
+/Users/zekiboy/Desktop/MyGithub/MonoCommerce/MonoCommerce.Entities/obj/Debug/net9.0/ref/MonoCommerce.Entities.dll

@@ -1,0 +1,17 @@
+/Users/zekiboy/Desktop/MyGithub/MonoCommerce/MonoCommerce.Data/bin/Debug/net9.0/MonoCommerce.Data.deps.json
+/Users/zekiboy/Desktop/MyGithub/MonoCommerce/MonoCommerce.Data/bin/Debug/net9.0/MonoCommerce.Data.runtimeconfig.json
+/Users/zekiboy/Desktop/MyGithub/MonoCommerce/MonoCommerce.Data/bin/Debug/net9.0/MonoCommerce.Data.dll
+/Users/zekiboy/Desktop/MyGithub/MonoCommerce/MonoCommerce.Data/bin/Debug/net9.0/MonoCommerce.Data.pdb
+/Users/zekiboy/Desktop/MyGithub/MonoCommerce/MonoCommerce.Data/bin/Debug/net9.0/MonoCommerce.Entities.dll
+/Users/zekiboy/Desktop/MyGithub/MonoCommerce/MonoCommerce.Data/bin/Debug/net9.0/MonoCommerce.Entities.pdb
+/Users/zekiboy/Desktop/MyGithub/MonoCommerce/MonoCommerce.Data/obj/Debug/net9.0/MonoCommerce.Data.csproj.AssemblyReference.cache
+/Users/zekiboy/Desktop/MyGithub/MonoCommerce/MonoCommerce.Data/obj/Debug/net9.0/MonoCommerce.Data.GeneratedMSBuildEditorConfig.editorconfig
+/Users/zekiboy/Desktop/MyGithub/MonoCommerce/MonoCommerce.Data/obj/Debug/net9.0/MonoCommerce.Data.AssemblyInfoInputs.cache
+/Users/zekiboy/Desktop/MyGithub/MonoCommerce/MonoCommerce.Data/obj/Debug/net9.0/MonoCommerce.Data.AssemblyInfo.cs
+/Users/zekiboy/Desktop/MyGithub/MonoCommerce/MonoCommerce.Data/obj/Debug/net9.0/MonoCommerce.Data.csproj.CoreCompileInputs.cache
+/Users/zekiboy/Desktop/MyGithub/MonoCommerce/MonoCommerce.Data/obj/Debug/net9.0/MonoComm.86ADB316.Up2Date
+/Users/zekiboy/Desktop/MyGithub/MonoCommerce/MonoCommerce.Data/obj/Debug/net9.0/MonoCommerce.Data.dll
+/Users/zekiboy/Desktop/MyGithub/MonoCommerce/MonoCommerce.Data/obj/Debug/net9.0/refint/MonoCommerce.Data.dll
+/Users/zekiboy/Desktop/MyGithub/MonoCommerce/MonoCommerce.Data/obj/Debug/net9.0/MonoCommerce.Data.pdb
+/Users/zekiboy/Desktop/MyGithub/MonoCommerce/MonoCommerce.Data/obj/Debug/net9.0/MonoCommerce.Data.genruntimeconfig.cache
+/Users/zekiboy/Desktop/MyGithub/MonoCommerce/MonoCommerce.Data/obj/Debug/net9.0/ref/MonoCommerce.Data.dll

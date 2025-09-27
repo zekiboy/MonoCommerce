@@ -1,0 +1,38 @@
+﻿@{
+    ViewData["Title"] = "Anasayfa";
+}
+
+<div class="text-center mb-4">
+    <h1 class="display-4">Hoşgeldiniz</h1>
+    <p>MonoCommerce yönetim paneline giriş yaptınız.</p>
+</div>
+
+<div class="row">
+    <div class="col-md-3 mb-3">
+        <a asp-controller="Site" asp-action="Index" class="btn btn-outline-primary w-100">Site Yönetimi</a>
+    </div>
+    <div class="col-md-3 mb-3">
+        <a asp-controller="Product" asp-action="Index" class="btn btn-outline-primary w-100">Ürün Yönetimi</a>
+    </div>
+    <div class="col-md-3 mb-3">
+        <a asp-controller="Cargo" asp-action="Index" class="btn btn-outline-primary w-100">Kargo Yönetimi</a>
+    </div>
+    <div class="col-md-3 mb-3">
+        <a asp-controller="Report" asp-action="Index" class="btn btn-outline-primary w-100">Rapor</a>
+    </div>
+    <div class="col-md-3 mb-3">
+        <a asp-controller="User" asp-action="Index" class="btn btn-outline-primary w-100">Kullanıcı Yönetimi</a>
+    </div>
+    <div class="col-md-3 mb-3">
+        <a asp-controller="Expense" asp-action="Create" class="btn btn-outline-primary w-100">Harcama Girişi</a>
+    </div>
+    <div class="col-md-3 mb-3">
+        <a asp-controller="Message" asp-action="Index" class="btn btn-outline-primary w-100">Mesajlar</a>
+    </div>
+    <div class="col-md-3 mb-3">
+        <a asp-controller="Text" asp-action="Index" class="btn btn-outline-primary w-100">Metinler</a>
+    </div>
+    <div class="col-md-3 mb-3">
+        <a asp-controller="System" asp-action="Settings" class="btn btn-outline-primary w-100">Sistem Ayarları</a>
+    </div>
+</div>
