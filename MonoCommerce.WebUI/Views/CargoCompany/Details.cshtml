@@ -1,0 +1,43 @@
+@model MonoCommerce.WebUI.Models.CargoCompanyViewModel
+
+@{
+    ViewData["Title"] = "Kargo Firması Detay";
+}
+
+<div class="container mt-4">
+    <h2>Kargo Firması Detay</h2>
+    <dl class="row">
+        <dt class="col-sm-3">Adı</dt>
+        <dd class="col-sm-9">@Model.Name</dd>
+
+        <dt class="col-sm-3">Açıklama</dt>
+        <dd class="col-sm-9">@Model.Description</dd>
+
+        <dt class="col-sm-3">Ağırlık Türü</dt>
+        <dd class="col-sm-9">@Model.WeightType</dd>
+
+        <dt class="col-sm-3">API Türü</dt>
+        <dd class="col-sm-9">@Model.ApiType</dd>
+
+        <dt class="col-sm-3">API URL</dt>
+        <dd class="col-sm-9">@Model.ApiUrl</dd>
+
+        <dt class="col-sm-3">CarrierCargoUrlId</dt>
+        <dd class="col-sm-9">@Model.CarrierCargoUrlId</dd>
+
+        <dt class="col-sm-3">API Kullanıcı</dt>
+        <dd class="col-sm-9">@Model.ApiUsername</dd>
+
+        <dt class="col-sm-3">API Şifre</dt>
+        <dd class="col-sm-9">@Model.ApiPassword</dd>
+
+        <dt class="col-sm-3">API Token</dt>
+        <dd class="col-sm-9">@Model.ApiToken</dd>
+
+        <dt class="col-sm-3">Durum</dt>
+        <dd class="col-sm-9">@(Model.IsActive ? "Aktif" : "Pasif")</dd>
+    </dl>
+
+    <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-secondary">Düzenle</a>
+    <a asp-action="Index" class="btn btn-outline-secondary">Geri Dön</a>
+</div>

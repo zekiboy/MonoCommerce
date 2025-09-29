@@ -1,0 +1,67 @@
+@model MonoCommerce.WebUI.Models.CargoCompanyViewModel
+
+@{
+    ViewData["Title"] = "Kargo Firması Ekle";
+}
+
+<div class="container mt-4">
+    <h2>Kargo Firması Ekle</h2>
+    <form asp-action="Create" method="post">
+        <div class="mb-3">
+            <label asp-for="Name" class="form-label"></label>
+            <input asp-for="Name" class="form-control" />
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="Description" class="form-label"></label>
+            <textarea asp-for="Description" class="form-control"></textarea>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="WeightType" class="form-label"></label>
+            <select asp-for="WeightType" class="form-select">
+                <option value="Desi">Desi</option>
+                <option value="KG">KG</option>
+                <option value="Desi-KG">Desi-KG</option>
+            </select>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="ApiType" class="form-label"></label>
+            <input asp-for="ApiType" class="form-control" />
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="ApiUrl" class="form-label"></label>
+            <input asp-for="ApiUrl" class="form-control" />
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="CarrierCargoUrlId" class="form-label"></label>
+            <input asp-for="CarrierCargoUrlId" class="form-control" />
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="ApiUsername" class="form-label"></label>
+            <input asp-for="ApiUsername" class="form-control" />
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="ApiPassword" class="form-label"></label>
+            <input asp-for="ApiPassword" type="password" class="form-control" />
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="ApiToken" class="form-label"></label>
+            <input asp-for="ApiToken" class="form-control" />
+        </div>
+
+        <div class="form-check mb-3">
+            <input asp-for="IsActive" class="form-check-input" />
+            <label asp-for="IsActive" class="form-check-label"></label>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Kaydet</button>
+        <a asp-action="Index" class="btn btn-secondary">İptal</a>
+    </form>
+</div>
