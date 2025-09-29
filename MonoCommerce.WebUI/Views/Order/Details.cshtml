@@ -1,0 +1,52 @@
+@model MonoCommerce.WebUI.Models.OrderViewModel
+
+@{
+    ViewData["Title"] = "Sipariş Detayları";
+}
+
+<h1>Sipariş Detayları</h1>
+
+<div class="card mb-4">
+    <div class="card-header">
+        <strong>Müşteri Bilgileri</strong>
+    </div>
+    <div class="card-body">
+        <p><strong>Adı:</strong> @Model.CustomerName</p>
+        <p><strong>Telefon:</strong> @Model.CustomerPhone</p>
+        <p><strong>Email:</strong> @Model.CustomerEmail</p>
+        <p><strong>Şehir:</strong> @Model.City</p>
+        <p><strong>Adres:</strong> @Model.Address</p>
+    </div>
+</div>
+
+<div class="card mb-4">
+    <div class="card-header">
+        <strong>Sipariş Bilgileri</strong>
+    </div>
+    <div class="card-body">
+        <p><strong>Site:</strong> @Model.SiteName</p>
+        <p><strong>Adet:</strong> @Model.Quantity</p>
+        <p><strong>Birim Fiyat:</strong> @Model.UnitPrice)</p>
+        <p><strong>Toplam Fiyat:</strong> @Model.TotalPrice</p>
+        <p><strong>Durum:</strong> @Model.Status</p>
+        <p><strong>Telefonla Onaylandı:</strong> @(Model.IsConfirmedByPhone ? "Evet" : "Hayır")</p>
+        <p><strong>Sipariş Tarihi:</strong> @Model.OrderDate.ToString("dd.MM.yyyy HH:mm")</p>
+        @if (Model.ConfirmedDate.HasValue)
+        {
+            <p><strong>Onay Tarihi:</strong> @Model.ConfirmedDate.Value.ToString("dd.MM.yyyy HH:mm")</p>
+        }
+        @if (Model.ShippedDate.HasValue)
+        {
+            <p><strong>Kargo Tarihi:</strong> @Model.ShippedDate.Value.ToString("dd.MM.yyyy HH:mm")</p>
+        }
+        @if (Model.DeliveredDate.HasValue)
+        {
+            <p><strong>Teslim Tarihi:</strong> @Model.DeliveredDate.Value.ToString("dd.MM.yyyy HH:mm")</p>
+        }
+    </div>
+</div>
+
+<div class="mb-3">
+    <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-primary">Düzenle</a>
+    <a asp-action="Index" class="btn btn-secondary">Geri Dön</a>
+</div>
