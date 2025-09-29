@@ -1,0 +1,109 @@
+@model IEnumerable<MonoCommerce.WebUI.Models.OrderViewModel>
+
+@{
+    ViewData["Title"] = "Siparişler";
+}
+
+<div class="container mt-4">
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <div>
+            <h2>Siparişler</h2>
+            <p class="text-muted">Tüm siparişlerinizi bu ekrandan görüntüleyebilir ve yönetebilirsiniz.</p>
+        </div>
+        <div>
+            <a asp-action="Create" class="btn btn-outline-primary">Yeni Sipariş Ekle</a>
+        </div>
+    </div>
+
+    <div class="mb-3 d-flex justify-content-between">
+        <div>
+            Show 
+            <select class="form-select d-inline-block w-auto">
+                <option>10</option>
+                <option>25</option>
+                <option>50</option>
+                <option>100</option>
+            </select> 
+            entries
+        </div>
+        <div>
+            <input type="text" class="form-control" placeholder="Ara...">
+        </div>
+    </div>
+
+    <div class="table-responsive">
+        <table class="table table-bordered table-striped" id="ordersTable">
+            <thead class="table-light">
+                <tr>
+                    <th>ID</th>
+                    <th>Müşteri</th>
+                    <th>Telefon</th>
+                    <th>Site</th>
+                    <th>Adet</th>
+                    <th>Birim Fiyat</th>
+                    <th>Toplam Fiyat</th>
+                    <th>Durum</th>
+                    <th>Telefon Onayı</th>
+                    <th>Sipariş Tarihi</th>
+                    <th>Düzenle</th>
+                    <th>Sil</th>
+                    <th>Detay</th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (Model != null && Model.Any())
+                {
+                    foreach (var order in Model)
+                    {
+                        <tr>
+                            <td>@order.Id</td>
+                            <td>@order.CustomerName</td>
+                            <td>@order.CustomerPhone</td>
+                            <td>@order.SiteName</td>
+                            <td>@order.Quantity</td>
+                            <td>@order.UnitPrice</td>
+                            <td>@order.TotalPrice</td>
+                            <td>@order.Status</td>
+                            <td>
+                                @if(order.IsConfirmedByPhone)
+                                {
+                                    <span class="badge bg-success">Onaylı</span>
+                                }
+                                else
+                                {
+                                    <span class="badge bg-warning text-dark">Beklemede</span>
+                                }
+                            </td>
+                            <td>@order.OrderDate.ToString("dd.MM.yyyy HH:mm")</td>
+                            <td>
+                                <a asp-action="Edit" asp-route-id="@order.Id" class="btn btn-sm btn-outline-secondary">Düzenle</a>
+                            </td>
+                            <td>
+                                <form asp-action="Delete" asp-route-id="@order.Id" method="post" style="display:inline;" onsubmit="return confirm('Bu siparişi silmek istediğinize emin misiniz?');">
+                                    <button type="submit" class="btn btn-sm btn-outline-danger">Sil</button>
+                                </form>
+                            </td>
+                            <td>
+                                <a asp-action="Details" asp-route-id="@order.Id" class="btn btn-sm btn-outline-primary">Detay</a>
+                            </td>
+                        </tr>
+                    }
+                }
+                else
+                {
+                    <tr>
+                        <td colspan="13" class="text-center">Henüz sipariş yok</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            $('#ordersTable').DataTable();
+        });
+    </script>
+}

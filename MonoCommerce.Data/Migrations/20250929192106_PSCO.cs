@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace MonoCommerce.Data.Migrations
 {
     /// <inheritdoc />
-    public partial class InitialCreateTest : Migration
+    public partial class PSCO : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -129,17 +129,16 @@ namespace MonoCommerce.Data.Migrations
                     Id = table.Column<int>(type: "INTEGER", nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
                     CustomerName = table.Column<string>(type: "TEXT", nullable: false),
-                    CustomerPhone = table.Column<string>(type: "TEXT", nullable: false),
-                    CustomerEmail = table.Column<string>(type: "TEXT", nullable: false),
-                    City = table.Column<string>(type: "TEXT", nullable: false),
-                    Address = table.Column<string>(type: "TEXT", nullable: false),
-                    ProductId = table.Column<int>(type: "INTEGER", nullable: false),
+                    CustomerPhone = table.Column<string>(type: "TEXT", nullable: true),
+                    CustomerEmail = table.Column<string>(type: "TEXT", nullable: true),
+                    City = table.Column<string>(type: "TEXT", nullable: true),
+                    Address = table.Column<string>(type: "TEXT", nullable: true),
                     SiteId = table.Column<int>(type: "INTEGER", nullable: true),
-                    Quantity = table.Column<int>(type: "INTEGER", nullable: false),
-                    UnitPrice = table.Column<decimal>(type: "TEXT", nullable: false),
-                    TotalPrice = table.Column<decimal>(type: "TEXT", nullable: false),
-                    Status = table.Column<int>(type: "INTEGER", nullable: false),
-                    IsConfirmedByPhone = table.Column<bool>(type: "INTEGER", nullable: false),
+                    Quantity = table.Column<int>(type: "INTEGER", nullable: true),
+                    UnitPrice = table.Column<decimal>(type: "TEXT", nullable: true),
+                    TotalPrice = table.Column<decimal>(type: "TEXT", nullable: true),
+                    Status = table.Column<int>(type: "INTEGER", nullable: true),
+                    IsConfirmedByPhone = table.Column<bool>(type: "INTEGER", nullable: true),
                     OrderDate = table.Column<DateTime>(type: "TEXT", nullable: false),
                     ConfirmedDate = table.Column<DateTime>(type: "TEXT", nullable: true),
                     ShippedDate = table.Column<DateTime>(type: "TEXT", nullable: true),
@@ -152,22 +151,11 @@ namespace MonoCommerce.Data.Migrations
                 {
                     table.PrimaryKey("PK_Orders", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Orders_Products_ProductId",
-                        column: x => x.ProductId,
-                        principalTable: "Products",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
                         name: "FK_Orders_Sites_SiteId",
                         column: x => x.SiteId,
                         principalTable: "Sites",
                         principalColumn: "Id");
                 });
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Orders_ProductId",
-                table: "Orders",
-                column: "ProductId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Orders_SiteId",

@@ -11,8 +11,8 @@ using MonoCommerce.Data.Concrete;
 namespace MonoCommerce.Data.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20250927190655_InitialCreateTest")]
-    partial class InitialCreateTest
+    [Migration("20250929192106_PSCO")]
+    partial class PSCO
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -79,11 +79,9 @@ namespace MonoCommerce.Data.Migrations
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("Address")
-                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<string>("City")
-                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<DateTime?>("ConfirmedDate")
@@ -93,7 +91,6 @@ namespace MonoCommerce.Data.Migrations
                         .HasColumnType("TEXT");
 
                     b.Property<string>("CustomerEmail")
-                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<string>("CustomerName")
@@ -101,13 +98,12 @@ namespace MonoCommerce.Data.Migrations
                         .HasColumnType("TEXT");
 
                     b.Property<string>("CustomerPhone")
-                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<DateTime?>("DeliveredDate")
                         .HasColumnType("TEXT");
 
-                    b.Property<bool>("IsConfirmedByPhone")
+                    b.Property<bool?>("IsConfirmedByPhone")
                         .HasColumnType("INTEGER");
 
                     b.Property<bool>("IsDeleted")
@@ -116,10 +112,7 @@ namespace MonoCommerce.Data.Migrations
                     b.Property<DateTime>("OrderDate")
                         .HasColumnType("TEXT");
 
-                    b.Property<int>("ProductId")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<int>("Quantity")
+                    b.Property<int?>("Quantity")
                         .HasColumnType("INTEGER");
 
                     b.Property<DateTime?>("ShippedDate")
@@ -128,21 +121,19 @@ namespace MonoCommerce.Data.Migrations
                     b.Property<int?>("SiteId")
                         .HasColumnType("INTEGER");
 
-                    b.Property<int>("Status")
+                    b.Property<int?>("Status")
                         .HasColumnType("INTEGER");
 
-                    b.Property<decimal>("TotalPrice")
+                    b.Property<decimal?>("TotalPrice")
                         .HasColumnType("TEXT");
 
-                    b.Property<decimal>("UnitPrice")
+                    b.Property<decimal?>("UnitPrice")
                         .HasColumnType("TEXT");
 
                     b.Property<DateTime?>("UpdatedDate")
                         .HasColumnType("TEXT");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("ProductId");
 
                     b.HasIndex("SiteId");
 
@@ -336,17 +327,9 @@ namespace MonoCommerce.Data.Migrations
 
             modelBuilder.Entity("MonoCommerce.Entities.Order", b =>
                 {
-                    b.HasOne("MonoCommerce.Entities.Product", "Product")
-                        .WithMany()
-                        .HasForeignKey("ProductId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("MonoCommerce.Entities.Site", "Site")
                         .WithMany()
                         .HasForeignKey("SiteId");
-
-                    b.Navigation("Product");
 
                     b.Navigation("Site");
                 });
