@@ -9,10 +9,13 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
+// HttpClient ekleyelim
+builder.Services.AddHttpClient();
 // DbContext kaydı
 builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseSqlite("Data Source=monocommerce.db"));
     
+
 // AutoMapper kaydı
 builder.Services.AddAutoMapper(typeof(MappingProfile));
 
@@ -29,6 +32,25 @@ builder.Services.AddScoped<ICargoCompanyManager, CargoCompanyManager>();
 builder.Services.AddScoped<IOrderRepository, OrderRepository>();
 builder.Services.AddScoped<IOrderManager, OrderManager>();
 
+builder.Services.AddScoped<IGoDaddyManager, GoDaddyManager>();
+// builder.Services.AddScoped<IGoDaddyRepository, GoDaddyRepository>();
+builder.Services.AddHttpClient<GoDaddyRepository>();
+
+// Config değerlerini alıp inject et
+builder.Services.AddScoped<IGoDaddyRepository>(sp =>
+{
+    var httpClient = sp.GetRequiredService<HttpClient>();
+    var config = builder.Configuration.GetSection("GoDaddy");
+    var apiKey = config["ApiKey"];
+    var apiSecret = config["ApiSecret"];
+    return new GoDaddyRepository(httpClient, apiKey, apiSecret);
+});
+
+builder.Services.AddScoped<IHtmlExportRepository, HtmlExportRepository>();
+builder.Services.AddScoped<IHtmlExportManager, HtmlExportManager>();
+
+
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -40,6 +62,11 @@ if (!app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 app.UseRouting();
+
+
+
+
+
 app.UseAuthorization();
 
 app.MapStaticAssets();

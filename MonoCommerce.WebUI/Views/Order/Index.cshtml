@@ -45,9 +45,9 @@
                     <th>Durum</th>
                     <th>Telefon Onayı</th>
                     <th>Sipariş Tarihi</th>
+                    <th>Detay</th>
                     <th>Düzenle</th>
                     <th>Sil</th>
-                    <th>Detay</th>
                 </tr>
             </thead>
             <tbody>
@@ -76,6 +76,10 @@
                             </td>
                             <td>@order.OrderDate.ToString("dd.MM.yyyy HH:mm")</td>
                             <td>
+                                <a asp-action="Details" asp-route-id="@order.Id" class="btn btn-sm btn-outline-primary">Detay</a>
+                            </td>
+
+                            <td>
                                 <a asp-action="Edit" asp-route-id="@order.Id" class="btn btn-sm btn-outline-secondary">Düzenle</a>
                             </td>
                             <td>
@@ -83,9 +87,7 @@
                                     <button type="submit" class="btn btn-sm btn-outline-danger">Sil</button>
                                 </form>
                             </td>
-                            <td>
-                                <a asp-action="Details" asp-route-id="@order.Id" class="btn btn-sm btn-outline-primary">Detay</a>
-                            </td>
+
                         </tr>
                     }
                 }

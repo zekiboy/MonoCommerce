@@ -30,6 +30,10 @@ namespace MonoCommerce.Business
         public Task<Site?> GetSiteWithProductAsync(int id) => _siteRepo.GetSiteWithProductAsync(id);
         public Task<IEnumerable<Site>> GetAllWithProductsAsync() => _siteRepo.GetAllWithProductsAsync();
 
+        public Task<Site?> GetByProductNameAsync(string productName) => _siteRepo.GetByProductNameAsync(productName);
+        // public Task<Site?> GetByUrlAsync(string url) => _siteRepo.GetByUrlAsync(url);
+
+
 
     }
 }

@@ -9,5 +9,9 @@ namespace MonoCommerce.Data.Abstract
 
         // Tüm siteleri Product dahil olarak getir
         Task<IEnumerable<Site>> GetAllWithProductsAsync();
+
+        Task<Site?> GetByProductNameAsync(string productName);
+        // Task<Site?> GetByUrlAsync(string url);
+
     }
 }

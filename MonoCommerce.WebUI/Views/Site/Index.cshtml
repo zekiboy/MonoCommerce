@@ -43,9 +43,9 @@
                     <th>Kopyala</th>
                     <th>Ek Ürünler</th>
                     <th>Promosyon</th>
+                    <th>Detaylar</th>
                     <th>Düzenle</th>
                     <th>Sil</th>
-                    <th>Detaylar</th>
                 </tr>
             </thead>
             <tbody>
@@ -68,6 +68,9 @@
                             <td>
                                 <a asp-action="Promotions" asp-route-id="@site.Id" class="btn btn-sm btn-outline-secondary">Seç</a>
                             </td>
+                                                        <td>
+                                <a asp-action="Details" asp-route-id="@site.Id" class="btn btn-sm btn-outline-primary">Detaylar</a>
+                            </td>
                             <td>
                                 <a asp-action="Edit" asp-route-id="@site.Id" class="btn btn-sm btn-outline-secondary">Düzenle</a>
                             </td>
@@ -76,9 +79,7 @@
                                     <button type="submit" class="btn btn-sm btn-outline-danger">Sil</button>
                                 </form>
                             </td>
-                            <td>
-                                <a asp-action="Details" asp-route-id="@site.Id" class="btn btn-sm btn-outline-primary">Detaylar</a>
-                            </td>
+
                         </tr>
                     }
                 }
