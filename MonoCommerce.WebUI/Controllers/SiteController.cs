@@ -22,6 +22,9 @@ namespace MonoCommerce.WebUI.Controllers
             _productManager = productManager;
         }
 
+
+
+
         // INDEX: Tüm siteleri listeler
         public async Task<IActionResult> Index()
         {

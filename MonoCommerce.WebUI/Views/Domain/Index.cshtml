@@ -1,0 +1,83 @@
+@{
+    ViewData["Title"] = "Domain Yönetimi";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+<div class="card p-4 mb-4">
+    <!-- Domain Kontrol Formu -->
+    <form method="post" asp-action="CheckDomain">
+        <div class="mb-3">
+            <label for="domain" class="form-label">Domain Adı Kontrolü</label>
+            <input type="text" class="form-control" name="domain" id="domain" 
+                   placeholder="örnek: paspas.online" required 
+                   value="@ViewBag.LastDomain ?? "testdomain.xyz"" />
+        </div>
+        <button type="submit" class="btn btn-primary">Kontrol Et</button>
+    </form>
+
+    <!-- Satın Alma Butonu -->
+    <form method="post" asp-action="PurchaseDomain" class="mt-3">
+        <input type="hidden" name="domain" value="@ViewBag.LastDomain ?? "testdomain.xyz"" />
+        <button type="submit" class="btn btn-success">
+            Satın Al (Test)
+        </button>
+    </form>
+
+    <!-- DNS Simülasyon Butonu -->
+    <form method="post" asp-action="UpdateDnsTest" class="mt-3">
+        <input type="hidden" name="domain" value="@ViewBag.LastDomain ?? "testdomain.xyz"" />
+        <button type="submit" class="btn btn-info">
+            DNS Simülasyon (Test)
+        </button>
+    </form>
+
+    <!-- HTML Export Butonları -->
+    <form method="post" asp-action="ExportLocal" class="mt-3">
+        <input type="hidden" name="domain" value="@ViewBag.LastDomain ?? "testdomain.xyz"" />
+        <input type="hidden" name="htmlContent" value="<h1>Test Export Local</h1><p>Bu HTML test amaçlı export edilmiştir.</p>" />
+        <button type="submit" class="btn btn-warning">
+            HTML Export Local
+        </button>
+    </form>
+
+    <form method="post" asp-action="ExportServer" class="mt-2">
+        <input type="hidden" name="domain" value="@ViewBag.LastDomain ?? "testdomain.xyz"" />
+        <input type="hidden" name="htmlContent" value="<h1>Test Export Server</h1><p>Bu HTML server simülasyonu için export edilmiştir.</p>" />
+        <button type="submit" class="btn btn-secondary">
+            HTML Export Server (Simulate)
+        </button>
+    </form>
+
+    <!-- Uyarı Mesajı -->
+    @if (ViewBag.Message != null)
+    {
+        <div class="alert @(ViewBag.IsAvailable == true ? "alert-success" : "alert-danger") mt-3">
+            @ViewBag.Message
+        </div>
+    }
+
+    <!-- Domain Detayları -->
+    @if (ViewBag.DomainDetails != null)
+    {
+        <div class="mt-3">
+            <h5>Domain Detayları:</h5>
+            <ul>
+                <li>Status: @ViewBag.DomainDetails.Status</li>
+                <li>Expiration Date: @ViewBag.DomainDetails.ExpirationDate</li>
+                <li>Privacy Enabled: @(ViewBag.DomainDetails.PrivacyEnabled ? "Evet" : "Hayır")</li>
+                <li>Name Servers: @string.Join(", ", ViewBag.DomainDetails.NameServers)</li>
+            </ul>
+        </div>
+    }
+</div>
+
+<hr />
+
+<h4>Notlar:</h4>
+<ul>
+    <li>Bu sayfa test amaçlıdır ve GoDaddy OTE API üzerinden çalışır.</li>
+    <li>Alınabilir domainlerde satın alma testi yapılabilir.</li>
+    <li>DNS simülasyonu, localhost IP’si (127.0.0.1) ile test edilir.</li>
+    <li>HTML export işlemleri, hem local klasöre hem de server simülasyonuna gönderilebilir.</li>
+</ul>

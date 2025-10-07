@@ -15,5 +15,9 @@ namespace MonoCommerce.Business.Abstract
         // Product dahil getirme metodları
         Task<Site?> GetSiteWithProductAsync(int id);
         Task<IEnumerable<Site>> GetAllWithProductsAsync();
+
+        Task<Site?> GetByProductNameAsync(string productName);
+        // Task<Site?> GetByUrlAsync(string url);
+
     }
 }
