@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("MonoCommerce.Data")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+03ff0a915d1d790e021deb40819a8a4ca4d6e005")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+c021c46980d002b768cdbb0a00ec28cf9e738894")]
 [assembly: System.Reflection.AssemblyProductAttribute("MonoCommerce.Data")]
 [assembly: System.Reflection.AssemblyTitleAttribute("MonoCommerce.Data")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

@@ -81,5 +81,12 @@ namespace MonoCommerce.WebUI.Models
 
         [Display(Name = "Form HTML")]
         public string? FormHtml { get; set; }
+
+        // DNS ve HTML export test alanları
+        [Display(Name = "Test Domain")]
+        public string? TestDomain { get; set; }
+
+        [Display(Name = "Export HTML İçeriği")]
+        public string? ExportHtmlContent { get; set; }
     }
 }
