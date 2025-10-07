@@ -11,14 +11,14 @@
             <label for="domain" class="form-label">Domain Adı Kontrolü</label>
             <input type="text" class="form-control" name="domain" id="domain" 
                    placeholder="örnek: paspas.online" required 
-                   value="@ViewBag.LastDomain ?? "testdomain.xyz"" />
+                   value="@(ViewBag.LastDomain ?? "testdomain.xyz")" />
         </div>
         <button type="submit" class="btn btn-primary">Kontrol Et</button>
     </form>
 
     <!-- Satın Alma Butonu -->
     <form method="post" asp-action="PurchaseDomain" class="mt-3">
-        <input type="hidden" name="domain" value="@ViewBag.LastDomain ?? "testdomain.xyz"" />
+        <input type="hidden" name="domain" value="@(ViewBag.LastDomain ?? "testdomain.xyz")" />
         <button type="submit" class="btn btn-success">
             Satın Al (Test)
         </button>
@@ -26,7 +26,7 @@
 
     <!-- DNS Simülasyon Butonu -->
     <form method="post" asp-action="UpdateDnsTest" class="mt-3">
-        <input type="hidden" name="domain" value="@ViewBag.LastDomain ?? "testdomain.xyz"" />
+        <input type="hidden" name="domain" value="@(ViewBag.LastDomain ?? "testdomain.xyz")" />
         <button type="submit" class="btn btn-info">
             DNS Simülasyon (Test)
         </button>
@@ -34,7 +34,7 @@
 
     <!-- HTML Export Butonları -->
     <form method="post" asp-action="ExportLocal" class="mt-3">
-        <input type="hidden" name="domain" value="@ViewBag.LastDomain ?? "testdomain.xyz"" />
+        <input type="hidden" name="domain" value="@(ViewBag.LastDomain ?? "testdomain.xyz")" />
         <input type="hidden" name="htmlContent" value="<h1>Test Export Local</h1><p>Bu HTML test amaçlı export edilmiştir.</p>" />
         <button type="submit" class="btn btn-warning">
             HTML Export Local
@@ -42,7 +42,7 @@
     </form>
 
     <form method="post" asp-action="ExportServer" class="mt-2">
-        <input type="hidden" name="domain" value="@ViewBag.LastDomain ?? "testdomain.xyz"" />
+        <input type="hidden" name="domain" value="@(ViewBag.LastDomain ?? "testdomain.xyz")" />
         <input type="hidden" name="htmlContent" value="<h1>Test Export Server</h1><p>Bu HTML server simülasyonu için export edilmiştir.</p>" />
         <button type="submit" class="btn btn-secondary">
             HTML Export Server (Simulate)
