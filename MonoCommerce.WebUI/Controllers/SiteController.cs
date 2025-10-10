@@ -41,6 +41,58 @@ namespace MonoCommerce.WebUI.Controllers
             var model = _mapper.Map<IEnumerable<SiteViewModel>>(sites);
             return View(model);
         }
+        
+
+        // DETAIL: Tek site detay
+        public async Task<IActionResult> Details(int id)
+        {
+            var site = await _siteManager.GetSiteWithProductAsync(id);
+            if (site == null) return NotFound();
+
+            var model = _mapper.Map<SiteViewModel>(site);
+            return View(model);
+        }
+
+   // EDIT GET
+        [HttpGet]
+        public async Task<IActionResult> Edit(int id)
+        {
+            var site = await _siteManager.GetSiteWithProductAsync(id); // Product dahil çek
+            if (site == null) return NotFound();
+
+            var products = await _productManager.GetAllAsync();
+            ViewBag.Products = new SelectList(products, "Id", "Name", site.ProductId);
+
+            var model = _mapper.Map<SiteViewModel>(site);
+            return View(model);
+        }
+
+        // EDIT POST
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Edit(SiteViewModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+                var products = await _productManager.GetAllAsync();
+                ViewBag.Products = new SelectList(products, "Id", "Name", model.ProductId);
+                return View(model);
+            }
+
+            var site = _mapper.Map<Site>(model);
+            await _siteManager.UpdateAsync(site);
+            return RedirectToAction(nameof(Index));
+        }
+
+        // DELETE
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Delete(int id)
+        {
+            await _siteManager.DeleteAsync(id);
+            return RedirectToAction(nameof(Index));
+        }
+
 
         // CREATE GET
         [HttpGet]
@@ -215,38 +267,35 @@ public async Task<IActionResult> UpdateDnsTest(string url)
     return RedirectToAction("Create", new { lastDomain = url });
 }
 
-// ✅ HTML EXPORT LOCAL
+
 [HttpPost]
 [ValidateAntiForgeryToken]
 public async Task<IActionResult> ExportLocal(SiteViewModel model)
 {
-    if (string.IsNullOrWhiteSpace(model.Url))
+    if (model == null)
     {
-        TempData["DomainMessage"] = "❌ Site URL girilmedi.";
+        TempData["DomainMessage"] = "❌ Model boş geldi, export işlemi iptal.";
         return RedirectToAction("Create");
     }
 
-    string htmlContent;
-    if (System.IO.File.Exists("./Templates/SiteTemplate.html"))
-    {
-        string template = await System.IO.File.ReadAllTextAsync("./Templates/SiteTemplate.html");
-        htmlContent = template
-            .Replace("((siteName))", model.Name)
-            .Replace("((description))", model.Description ?? "")
-            .Replace("((imageUrl))", model.ImageUrl ?? "")
-            .Replace("((price))", model.Prices ?? "")
-            .Replace("((paymentMethod))", model.PaymentMethod ?? "")
-            .Replace("((currency))", model.Currency ?? "")
-            .Replace("((whatsapp))", model.WhatsappPhone ?? "")
-            .Replace("((pixelCode))", model.PixelCode ?? "")
-            .Replace("((formHtml))", model.FormHtml ?? "")
-            .Replace("((url))", model.Url);
-    }
-    else
-    {
-        htmlContent = model.HtmlContent ??
-            "<html><body><h1>MonoCommerce Export Test</h1><p>Varsayılan içerik.</p></body></html>";
-    }
+    // Şablon yolu
+    string templatePath = "./Templates/SiteTemplate.html";
+    string htmlTemplate = System.IO.File.Exists(templatePath)
+        ? System.IO.File.ReadAllText(templatePath)
+        : "<html><body><h1>((siteName))</h1><p>((description))</p></body></html>";
+
+    // Değerleri şablona yerleştir
+    string htmlContent = htmlTemplate
+        .Replace("((siteName))", model.Name ?? "")
+        .Replace("((description))", model.Description ?? "")
+        .Replace("((imageUrl))", model.ImageUrl ?? "")
+        .Replace("((price))", model.Prices ?? "")
+        .Replace("((currency))", model.Currency ?? "")
+        .Replace("((paymentMethod))", model.PaymentMethod ?? "")
+        .Replace("((whatsapp))", model.WhatsappPhone ?? "")
+        .Replace("((domain))", model.Url ?? "")
+        .Replace("((formHtml))", model.FormHtml ?? "")
+        .Replace("((pixelCode))", model.PixelCode ?? "");
 
     var request = new HtmlExportRequest
     {
@@ -258,15 +307,69 @@ public async Task<IActionResult> ExportLocal(SiteViewModel model)
     var success = await _htmlExportManager.ExportToLocalAsync(request);
 
     TempData["DomainMessage"] = success
-        ? $"✅ HTML local export başarılı. {request.TargetPath}"
+        ? $"✅ HTML export başarılı. {request.TargetPath}"
         : $"⚠️ HTML export başarısız.";
 
-    // Son domaini query parametresi ile Create action'a gönder
-    return RedirectToAction("Create", new { lastDomain = model.Url });
+    return RedirectToAction("Create");
 }
 
-// ✅ HTML EXPORT SERVER
-[HttpPost]
+        // // ✅ HTML EXPORT LOCAL
+        // [HttpPost]
+        // [ValidateAntiForgeryToken]
+        // public async Task<IActionResult> ExportLocal(SiteViewModel model)
+        // {
+
+        //     if (string.IsNullOrWhiteSpace(model.Url))
+        //     {
+        //         TempData["DomainMessage"] = "❌ Site URL girilmedi.";
+        //         return RedirectToAction("Create");
+        //     }
+
+        //     string htmlContent;
+
+        //     // Template path'i kesin ve mutlak olarak al
+        //     var templatePath = Path.Combine(Directory.GetCurrentDirectory(), "Templates", "SiteTemplate.html");
+
+        //     if (System.IO.File.Exists(templatePath))
+        //     {
+        //         string template = await System.IO.File.ReadAllTextAsync(templatePath);
+        //         htmlContent = template
+        //             .Replace("((siteName))", model.Name ?? "")
+        //             .Replace("((description))", model.Description ?? "")
+        //             .Replace("((imageUrl))", model.ImageUrl ?? "")
+        //             .Replace("((price))", model.Prices ?? "")
+        //             .Replace("((paymentMethod))", model.PaymentMethod ?? "")
+        //             .Replace("((currency))", model.Currency ?? "")
+        //             .Replace("((whatsapp))", model.WhatsappPhone ?? "")
+        //             .Replace("((pixelCode))", model.PixelCode ?? "")
+        //             .Replace("((formHtml))", model.FormHtml ?? "")
+        //             .Replace("((url))", model.Url ?? "");
+        //     }
+        //     else
+        //     {
+        //         htmlContent = model.HtmlContent ?? 
+        //             "<html><body><h1>MonoCommerce Export Test</h1><p>Varsayılan içerik.</p></body></html>";
+        //     }
+
+        //     var request = new HtmlExportRequest
+        //     {
+        //         Domain = model.Url,
+        //         HtmlContent = htmlContent,
+        //         TargetPath = Path.Combine(Directory.GetCurrentDirectory(), "Exports", $"{model.Url}.html")
+        //     };
+
+        //     var success = await _htmlExportManager.ExportToLocalAsync(request);
+
+        //     TempData["DomainMessage"] = success
+        //         ? $"✅ HTML local export başarılı. {request.TargetPath}"
+        //         : $"⚠️ HTML export başarısız.";
+
+        //     // Son domaini query parametresi ile Create action'a gönder
+        //     return RedirectToAction("Create", new { lastDomain = model.Url });
+        // }
+
+        // ✅ HTML EXPORT SERVER
+        [HttpPost]
 [ValidateAntiForgeryToken]
 public async Task<IActionResult> ExportServer(string url, string htmlContent)
 {

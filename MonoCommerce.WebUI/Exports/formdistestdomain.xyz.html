@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>((siteName)) | Ürün Tanıtımı</title>
+    <title>FORM DIŞ SİTE | Ürün Tanıtımı</title>
 
     <!-- Bootstrap 5 -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
@@ -68,27 +68,27 @@
     <div class="container">
         <div class="product-card">
             <div class="text-center mb-4">
-                <h1 class="display-6">((siteName))</h1>
-                <p class="text-muted">((description))</p>
+                <h1 class="display-6">FORM DIŞ SİTE</h1>
+                <p class="text-muted">form dış site açıkala</p>
             </div>
 
             <div class="text-center">
-                <img src="((imageUrl))" alt="Ürün Görseli" class="product-img" />
+                <img src="https://bebekoltugu.buseawm.online/img/01.jpg" alt="Ürün Görseli" class="product-img" />
             </div>
 
             <div class="mt-4">
                 <h3>Ürün Bilgileri</h3>
                 <ul class="list-group mb-3">
-                    <li class="list-group-item"><b>Fiyat:</b> ((price)) ((currency))</li>
-                    <li class="list-group-item"><b>Ödeme:</b> ((paymentMethod))</li>
+                    <li class="list-group-item"><b>Fiyat:</b> 10 TRY</li>
+                    <li class="list-group-item"><b>Ödeme:</b> Kapıda Ödeme</li>
                 </ul>
             </div>
 
             <div class="mt-4">
                 <h3>İletişim</h3>
                 <p>WhatsApp: 
-                    <a href="https://wa.me/((whatsapp))" target="_blank" class="whatsapp">
-                        ((whatsapp))
+                    <a href="https://wa.me/+905376927699" target="_blank" class="whatsapp">
+                        +905376927699
                     </a>
                 </p>
             </div>
@@ -96,20 +96,76 @@
             <div class="mt-4">
                 <h3>Form Alanı</h3>
                 <div class="border rounded p-3 bg-light">
-                    ((formHtml))
+                    <form class="p-3 border rounded bg-white shadow-sm" style="max-width: 600px; margin:auto;">
+    <div class="mb-3">
+        <label for="name" class="form-label">Ad Soyad</label>
+        <input type="text" class="form-control" id="name" name="name" placeholder="Adınızı ve soyadınızı giriniz" required />
+    </div>
+
+    <div class="mb-3">
+        <label for="phone" class="form-label">Telefon Numarası</label>
+        <input type="tel" class="form-control" id="phone" name="phone" placeholder="05xxxxxxxxx" maxlength="11" required />
+    </div>
+
+    <div class="mb-3">
+        <label for="address" class="form-label">Adres</label>
+        <textarea class="form-control" id="address" name="address" rows="3" placeholder="Teslimat adresinizi giriniz" required></textarea>
+    </div>
+
+    <div class="mb-3">
+        <label for="payment" class="form-label">Ödeme Yöntemi</label>
+        <select class="form-select" id="payment" name="payment">
+            <option selected disabled>Seçiniz</option>
+            <option value="Kapıda Nakit">Kapıda Nakit Ödeme</option>
+            <option value="Kapıda Kart">Kapıda Kredi Kartı</option>
+            <option value="Online">Online Ödeme (Iyzico)</option>
+        </select>
+    </div>
+
+    <button type="submit" class="btn btn-primary w-100 py-2">Siparişi Gönder</button>
+</form>
                 </div>
             </div>
 
             <div class="mt-4">
                 <h3>Pixel / Tracking Kodları</h3>
                 <div class="pixel-box">
-                    ((pixelCode))
+                    1
+<!-- Facebook Pixel Code -->
+2
+<script>
+3
+    !function(f,b,e,v,n,t,s)
+4
+    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+5
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+6
+    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+7
+    n.queue=[];t=b.createElement(e);t.async=!0;
+8
+    t.src=v;s=b.getElementsByTagName(e)[0];
+9
+    s.parentNode.insertBefore(t,s)}(window, document,'script',
+10
+    'https://connect.facebook.net/en_US/fbevents.js');
+11
+    fbq('init', '((pixelID))');
+12
+    fbq('track', 'PageView');
+13
+</script>
+14
+<noscript><img height='1' width='1' style='display:none' src='https://www.facebook.com/tr?id=((pixelID))&ev=PageView&noscript=1'/></noscript>
+15
+<!-- End Facebook Pixel Code -->
                 </div>
             </div>
 
             <footer>
                 <hr />
-                <p class="mt-3">Domain: <b>((domain))</b></p>
+                <p class="mt-3">Domain: <b>formdistestdomain.xyz</b></p>
                 <p>© 2025 MonoCommerce Export | Tüm hakları saklıdır.</p>
             </footer>
         </div>

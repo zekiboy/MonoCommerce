@@ -5,77 +5,69 @@
 }
 
 <div class="container mt-4">
-    <h2>Yeni Site Ekle</h2>
+    <h2 class="mb-3">Yeni Site Ekle</h2>
     <p class="text-muted">Yeni bir site eklemek için aşağıdaki formu doldurun.</p>
 
     @if (ViewBag.DomainMessage != null)
     {
-        <div class="alert alert-info" role="alert">
-            @Html.Raw(ViewBag.DomainMessage)
+        var message = ViewBag.DomainMessage.ToString();
+        var isSuccess = message.Contains("✅");
+        var alertClass = isSuccess ? "alert-success" : "alert-danger";
+        <div class="alert @alertClass" role="alert">
+            @Html.Raw(message)
         </div>
     }
 
     <hr />
 
-    <div class="card p-4 mb-4">
-        <!-- 🟩 DOMAIN TEST & EXPORT ALANI -->
-        <h4>Domain İşlemleri (Test)</h4>
+    <!-- 🌐 DOMAIN TEST & EXPORT ALANI -->
+    <div class="card p-4 mb-4 shadow-sm">
+        <h4 class="mb-3">🌐 Domain İşlemleri (Test)</h4>
 
-        <!-- Domain Kontrol Formu -->
-        <form method="post" asp-action="CheckDomain">
-            @Html.AntiForgeryToken()
-            <input type="hidden" name="url" value="@(Model.Url ?? "testdomain.xyz")" />
-            <button type="submit" class="btn btn-primary mb-2">Domain Kontrol Et</button>
-        </form>
+        <div class="d-flex flex-wrap gap-2">
+            <!-- domain kontrol, satın alma ve dns formlarında input name = url olmalı domain değil -->
 
-        <!-- Satın Alma Butonu -->
-        <form method="post" asp-action="PurchaseDomain" class="mb-2">
-            @Html.AntiForgeryToken()
-            <input type="hidden" name="url" value="@(Model.Url ?? "testdomain.xyz")" />
-            <button type="submit" class="btn btn-success">Satın Al (Test)</button>
-        </form>
+            <!-- Domain Kontrol -->
+            <form method="post" asp-action="CheckDomain">
+                @Html.AntiForgeryToken()
+                <input type="hidden" name="url" id="domainCheck" value="@(Model.Url ?? "testdomain.xyz")" />
+                <button type="submit" class="btn btn-primary">Domain Kontrol Et</button>
+            </form>
 
-        <!-- DNS Simülasyon Butonu -->
-        <form method="post" asp-action="UpdateDnsTest" class="mb-2">
-            @Html.AntiForgeryToken()
-            <input type="hidden" name="url" value="@(Model.Url ?? "testdomain.xyz")" />
-            <button type="submit" class="btn btn-info">DNS Simülasyon (Test)</button>
-        </form>
+            <!-- Satın Alma -->
+            <form method="post" asp-action="PurchaseDomain">
+                @Html.AntiForgeryToken()
+                <input type="hidden" name="url" id="domainPurchase" value="@(Model.Url ?? "testdomain.xyz")" />
+                <button type="submit" class="btn btn-success">Satın Al (Test)</button>
+            </form>
 
-        <!-- HTML Export Butonları -->
-        <form method="post" asp-action="ExportLocal" class="mb-2">
-            @Html.AntiForgeryToken()
-            <input type="hidden" name="url" value="@(Model.Url ?? "testdomain.xyz")" />
-            <input type="hidden" name="htmlContent" value="<h1>Test Export Local</h1><p>Bu HTML test amaçlı export edilmiştir.</p>" />
-            <button type="submit" class="btn btn-warning">HTML Export Local</button>
-        </form>
+            <!-- DNS Simülasyonu -->
+            <form method="post" asp-action="UpdateDnsTest">
+                @Html.AntiForgeryToken()
+                <input type="hidden" name="url" id="domainDns" value="@(Model.Url ?? "testdomain.xyz")" />
+                <button type="submit" class="btn btn-info">DNS Simülasyon (Test)</button>
+            </form>
 
-        <form method="post" asp-action="ExportServer" class="mb-2">
-            @Html.AntiForgeryToken()
-            <input type="hidden" name="url" value="@(Model.Url ?? "testdomain.xyz")" />
-            <input type="hidden" name="htmlContent" value="<h1>Test Export Server</h1><p>Bu HTML server simülasyonu için export edilmiştir.</p>" />
-            <button type="submit" class="btn btn-secondary">HTML Export Server (Simulate)</button>
-        </form>
+            <!-- HTML Export Local -->
+            <form id="exportLocalForm" method="post" asp-action="ExportLocal">
+                @Html.AntiForgeryToken()
+                <button type="submit" class="btn btn-warning">HTML Export Local</button>
+            </form>
 
-        <!-- Uyarı Mesajı -->
+            <!-- HTML Export Server -->
+            <form id="exportServerForm" method="post" asp-action="ExportServer">
+                @Html.AntiForgeryToken()
+                <button type="submit" class="btn btn-secondary">HTML Export Server (Simulate)</button>
+            </form>
+        </div>
+
         @if (ViewBag.Message != null)
         {
-            <div class="alert @(ViewBag.IsAvailable == true ? "alert-success" : "alert-danger") mt-3">
-                @ViewBag.Message
-            </div>
-        }
-
-        <!-- Domain Detayları -->
-        @if (ViewBag.DomainDetails != null)
-        {
-            <div class="mt-3">
-                <h5>Domain Detayları:</h5>
-                <ul>
-                    <li>Status: @ViewBag.DomainDetails.Status</li>
-                    <li>Expiration Date: @ViewBag.DomainDetails.ExpirationDate</li>
-                    <li>Privacy Enabled: @(ViewBag.DomainDetails.PrivacyEnabled ? "Evet" : "Hayır")</li>
-                    <li>Name Servers: @string.Join(", ", ViewBag.DomainDetails.NameServers)</li>
-                </ul>
+            var msg = ViewBag.Message.ToString();
+            var success = msg.Contains("✅");
+            var alertColor = success ? "alert-success" : "alert-danger";
+            <div class="alert @alertColor mt-3">
+                @msg
             </div>
         }
     </div>
@@ -83,126 +75,108 @@
     <hr />
 
     <!-- 🟩 SITE OLUŞTURMA FORMU -->
-    <form asp-action="Create" method="post" class="needs-validation" novalidate>
+    <form id="createForm" asp-action="Create" method="post" class="needs-validation" novalidate>
         @Html.AntiForgeryToken()
 
-        @* <!-- URL ALANI -->
+        <!-- URL ALANI -->
         <div class="mb-3">
-            <label asp-for="Url" class="form-label"></label>
-            <input asp-for="Url" class="form-control" value="@(ViewBag.LastDomain ?? Model.Url ?? "testdomain.xyz")" />
+            <label asp-for="Url" class="form-label">Site URL</label>
+            <input asp-for="Url" class="form-control" id="UrlInput" placeholder="ornekdomain.xyz" />
             <span asp-validation-for="Url" class="text-danger"></span>
-        </div> *@
-        <div class="mb-3">
-    <label asp-for="Url" class="form-label"></label>
-    <input asp-for="Url" class="form-control" value="@(ViewBag.LastDomain ?? Model.Url ?? "testdomain.xyz")" />
-    <span asp-validation-for="Url" class="text-danger"></span>
-</div>
-
-        <!-- GENEL ALANLAR -->
-        <div class="mb-3">
-            <label asp-for="Name" class="form-label"></label>
-            <input asp-for="Name" class="form-control" />
-            <span asp-validation-for="Name" class="text-danger"></span>
         </div>
 
         <div class="mb-3">
-            <label asp-for="Description" class="form-label"></label>
+            <label asp-for="Name" class="form-label">Site Adı</label>
+            <input asp-for="Name" class="form-control" />
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="Description" class="form-label">Açıklama</label>
             <textarea asp-for="Description" class="form-control"></textarea>
         </div>
 
         <div class="mb-3 form-check">
             <input asp-for="IsActive" class="form-check-input" />
-            <label asp-for="IsActive" class="form-check-label"></label>
+            <label asp-for="IsActive" class="form-check-label">Aktif mi?</label>
         </div>
 
         <div class="mb-3">
-            <label asp-for="ProductId" class="form-label"></label>
+            <label asp-for="ProductId" class="form-label">Ürün</label>
             <select asp-for="ProductId" class="form-select" asp-items="ViewBag.Products">
                 <option value="">Seçiniz</option>
             </select>
         </div>
 
         <div class="mb-3">
-            <label asp-for="ImageUrl" class="form-label"></label>
+            <label asp-for="ImageUrl" class="form-label">Site Resim URL</label>
             <input asp-for="ImageUrl" class="form-control" />
         </div>
 
         <div class="mb-3">
-            <label asp-for="Prices" class="form-label"></label>
+            <label asp-for="Prices" class="form-label">Fiyat</label>
             <input asp-for="Prices" class="form-control" />
         </div>
 
         <div class="mb-3">
-            <label asp-for="PaymentMethod" class="form-label"></label>
+            <label asp-for="PaymentMethod" class="form-label">Ödeme Yöntemi</label>
             <input asp-for="PaymentMethod" class="form-control" />
         </div>
 
         <div class="mb-3">
-            <label asp-for="Currency" class="form-label"></label>
+            <label asp-for="Currency" class="form-label">Para Birimi</label>
             <input asp-for="Currency" class="form-control" />
         </div>
 
         <h5>İletişim</h5>
         <div class="form-check mb-2">
             <input asp-for="WhatsappEnabled" class="form-check-input" />
-            <label asp-for="WhatsappEnabled" class="form-check-label"></label>
+            <label asp-for="WhatsappEnabled" class="form-check-label">Whatsapp Aktif mi?</label>
         </div>
 
         <div class="mb-3">
-            <label asp-for="WhatsappPhone" class="form-label"></label>
+            <label asp-for="WhatsappPhone" class="form-label">Whatsapp Telefon</label>
             <input asp-for="WhatsappPhone" class="form-control" />
         </div>
 
         <div class="mb-3">
-            <label asp-for="WhatsappAvailableTime" class="form-label"></label>
+            <label asp-for="WhatsappAvailableTime" class="form-label">Whatsapp Kullanım Zamanı</label>
             <input asp-for="WhatsappAvailableTime" class="form-control" />
         </div>
 
         <div class="form-check mb-2">
             <input asp-for="SmsApproval" class="form-check-input" />
-            <label asp-for="SmsApproval" class="form-check-label"></label>
-        </div>
-
-        <h5>Teknik Alanlar</h5>
-        <div class="form-check mb-2">
-            <input asp-for="FtpCreated" class="form-check-input" />
-            <label asp-for="FtpCreated" class="form-check-label"></label>
-        </div>
-
-        <div class="mb-3">
-            <label asp-for="Theme" class="form-label"></label>
-            <input asp-for="Theme" class="form-control" />
+            <label asp-for="SmsApproval" class="form-check-label">SMS Onayı</label>
         </div>
 
         <h5>Pixel & Tracking</h5>
         <div class="mb-3">
-            <label asp-for="PixelCode" class="form-label"></label>
-            <input asp-for="PixelCode" class="form-control" />
+            <label asp-for="PixelCode" class="form-label">Pixel Kodu</label>
+            <textarea asp-for="PixelCode" class="form-control" rows="3"></textarea>
         </div>
 
         <div class="mb-3">
-            <label asp-for="PixelSpecialCode" class="form-label"></label>
+            <label asp-for="PixelSpecialCode" class="form-label">Özel Pixel Kodu</label>
             <input asp-for="PixelSpecialCode" class="form-control" />
         </div>
 
         <div class="mb-3">
-            <label asp-for="PixelIds" class="form-label"></label>
+            <label asp-for="PixelIds" class="form-label">Pixel ID'leri</label>
             <input asp-for="PixelIds" class="form-control" />
         </div>
 
         <div class="mb-3">
-            <label asp-for="CounterCode" class="form-label"></label>
+            <label asp-for="CounterCode" class="form-label">Counter Kodu</label>
             <input asp-for="CounterCode" class="form-control" />
         </div>
 
         <h5>HTML İçerikler</h5>
         <div class="mb-3">
-            <label asp-for="HtmlContent" class="form-label"></label>
+            <label asp-for="HtmlContent" class="form-label">HTML İçerik</label>
             <textarea asp-for="HtmlContent" class="form-control" rows="3"></textarea>
         </div>
 
         <div class="mb-3">
-            <label asp-for="FormHtml" class="form-label"></label>
+            <label asp-for="FormHtml" class="form-label">Form HTML</label>
             <textarea asp-for="FormHtml" class="form-control" rows="3"></textarea>
         </div>
 
@@ -211,24 +185,44 @@
     </form>
 </div>
 
+<!-- 🔧 JAVASCRIPT -->
 <script>
 document.addEventListener("DOMContentLoaded", function () {
-    const urlInput = document.querySelector("input[name='Url']");
-    const forms = document.querySelectorAll("form");
+    const urlInput = document.getElementById("UrlInput");
+    const domainInputs = [
+        document.getElementById("domainCheck"),
+        document.getElementById("domainPurchase"),
+        document.getElementById("domainDns")
+    ];
 
-    function updateForms(value) {
-        forms.forEach(form => {
-            const hiddenInput = form.querySelector("input[name='url']");
-            if (hiddenInput) hiddenInput.value = value;
+    function syncDomainInputs() {
+        domainInputs.forEach(input => {
+            if (input) input.value = urlInput.value;
         });
     }
 
-    // Sayfa yüklendiğinde eşitle
-    updateForms(urlInput.value);
+    urlInput.addEventListener("input", syncDomainInputs);
+    syncDomainInputs(); // sayfa ilk açıldığında da güncelle
 
-    // Input değişince tüm hidden inputları güncelle
-    urlInput.addEventListener("input", () => {
-        updateForms(urlInput.value);
+    // Export formlarına tüm Create form verilerini aktar
+    const mainForm = document.getElementById("createForm");
+    const exportForms = [document.getElementById("exportLocalForm"), document.getElementById("exportServerForm")];
+
+    exportForms.forEach(form => {
+        if (!form) return;
+        form.addEventListener("submit", function () {
+            const formData = new FormData(mainForm);
+            for (const [key, value] of formData.entries()) {
+                let hidden = form.querySelector(`input[name='${key}']`);
+                if (!hidden) {
+                    hidden = document.createElement("input");
+                    hidden.type = "hidden";
+                    hidden.name = key;
+                    form.appendChild(hidden);
+                }
+                hidden.value = value;
+            }
+        });
     });
 });
 </script>
