@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("MonoCommerce.WebUI")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+c021c46980d002b768cdbb0a00ec28cf9e738894")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+0aa128b91c6666b34da6836eca7bbc6631eab0ed")]
 [assembly: System.Reflection.AssemblyProductAttribute("MonoCommerce.WebUI")]
 [assembly: System.Reflection.AssemblyTitleAttribute("MonoCommerce.WebUI")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
